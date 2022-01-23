@@ -1,28 +1,54 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import {
-   
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-  } from "reactstrap";
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Badge,
+  NavItem,
+  NavLink,
+} from "reactstrap";
 
 export default class CartSummary extends Component {
-    render() {
-        return (
-            <div>
-                <UncontrolledDropdown inNavbar nav>
-                <DropdownToggle caret nav>
-                  Options - {this.props.cart.length}
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>Option 1</DropdownItem>
-                  
-                  <DropdownItem divider />
-                  <DropdownItem>Reset</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            </div>
-        )
-    }
+  renderSummary() {
+    return (
+      <UncontrolledDropdown inNavbar nav>
+        <DropdownToggle caret nav>
+          Your Cart - {this.props.cart.length}
+        </DropdownToggle>
+        <DropdownMenu right>
+          {this.props.cart.map((cartItem) => (
+            <DropdownItem key={cartItem.product.id}>
+              <Badge
+                color="danger"
+                onClick={() => this.props.removeFromCart(cartItem.product)}
+              >X</Badge>
+              {cartItem.product.productName}
+              <Badge color="success">{cartItem.quantity}</Badge>
+            </DropdownItem>
+          ))}
+
+          <DropdownItem divider />
+          <DropdownItem>Reset</DropdownItem>
+        </DropdownMenu>
+      </UncontrolledDropdown>
+    );
+  }
+  renderEmptyCard() {
+    return (
+      <NavItem>
+        <NavLink>Empty Cart</NavLink>
+      </NavItem>
+    );
+  }
+  render() {
+    return (
+      <div>
+        {this.props.cart.length > 0
+          ? this.renderSummary()
+          : this.renderEmptyCard()}
+        {}
+      </div>
+    );
+  }
 }

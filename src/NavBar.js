@@ -8,7 +8,6 @@ import {
   Collapse,
   NavItem,
   NavLink,
-
 } from "reactstrap";
 import CartSummary from "./CartSummary";
 export default class NavBar extends Component {
@@ -28,10 +27,12 @@ export default class NavBar extends Component {
                   GitHub
                 </NavLink>
               </NavItem>
-              
             </Nav>
             <Nav className="ml-auto" navbar>
-            <CartSummary cart={this.props.cart}/>
+              <CartSummary
+                removeFromCart={this.props.removeFromCart}
+                cart={this.props.cart}
+              />
             </Nav>
           </Collapse>
         </Navbar>
