@@ -8,12 +8,9 @@ import {
   Collapse,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
 
+} from "reactstrap";
+import CartSummary from "./CartSummary";
 export default class NavBar extends Component {
   render() {
     return (
@@ -31,30 +28,10 @@ export default class NavBar extends Component {
                   GitHub
                 </NavLink>
               </NavItem>
-              <UncontrolledDropdown inNavbar nav>
-                <DropdownToggle caret nav>
-                  Options - {this.props.cart.length}
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>Option 1</DropdownItem>
-                  <DropdownItem>Option 2</DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>Reset</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+              
             </Nav>
             <Nav className="ml-auto" navbar>
-            <UncontrolledDropdown inNavbar nav>
-                <DropdownToggle caret nav>
-                  Options - {this.props.cart.length}
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>Option 1</DropdownItem>
-                  <DropdownItem>Option 2</DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>Reset</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+            <CartSummary cart={this.props.cart}/>
             </Nav>
           </Collapse>
         </Navbar>
