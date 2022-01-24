@@ -4,6 +4,10 @@ import NavBar from "./NavBar";
 import ProductList from "./ProductList";
 import alertify from 'alertifyjs'
 import React, { Component } from "react";
+import { Routes, Route } from "react-router-dom";
+import CartList from "./CartList";
+import NotFound from "./NotFound";
+
 
 export default class App extends Component {
   state = { currentCategory: "", products: [], cart: [] };
@@ -44,6 +48,7 @@ export default class App extends Component {
       (item) => item.product.id !== product.id
     );
     this.setState({ cart: newCart });
+    alertify.error(product.productName + "deleted from Cart")
   };
 
   render() {
@@ -71,12 +76,25 @@ export default class App extends Component {
             </Col>
 
             <Col xs="9">
-              <ProductList
-                addToCart={this.addToCart}
-                products={this.state.products}
-                currentCategory={this.state.currentCategory}
-                info={productInfo}
-              />
+              <Routes>
+                <Route exact path="/" element={
+                  <ProductList
+                    addToCart={this.addToCart}
+                    products={this.state.products}
+                    currentCategory={this.state.currentCategory}
+                    info={productInfo}
+                  />
+                } />
+                <Route exact path="/cart" element={
+                  <CartList
+                    removeFromCart={this.removeFromCart}
+                    cart={this.state.cart}
+                    
+                  />
+                } />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+
             </Col>
           </Row>
         </Container>
