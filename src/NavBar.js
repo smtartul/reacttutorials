@@ -9,6 +9,7 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
+import { Link } from "react-router-dom";
 import CartSummary from "./CartSummary";
 export default class NavBar extends Component {
   render() {
@@ -19,9 +20,11 @@ export default class NavBar extends Component {
           <NavbarToggler onClick={function noRefCheck() {}} />
           <Collapse navbar>
             <Nav className="me-auto" navbar>
-              <NavItem>
-                <NavLink href="/components/">Components</NavLink>
-              </NavItem>
+              <Link to='/form1'>Form1</Link>
+              <Link to='/form2'>Form2</Link>
+              {/* <NavItem>
+                <NavLink href="/form1">Form1</NavLink>
+              </NavItem> */}
               <NavItem>
                 <NavLink href="https://github.com/reactstrap/reactstrap">
                   GitHub

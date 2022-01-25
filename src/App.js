@@ -7,6 +7,8 @@ import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
 import CartList from "./CartList";
 import NotFound from "./NotFound";
+import FormDemo1 from "./FormDemo1";
+import FormDemo2 from "./FormDemo2";
 
 
 export default class App extends Component {
@@ -92,6 +94,8 @@ export default class App extends Component {
                     
                   />
                 } />
+                <Route exact path="/form1" element={<FormDemo1 />} />
+                <Route exact path="/form2" element={<FormDemo2 />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
 
